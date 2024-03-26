@@ -2,16 +2,15 @@
 
 # Project Title
 
-A brief description of what this project does and who it's for
+Nghiên cứu, phát triển chương trình mã độc Remote Access Trojan
 
 # PTITHCM_TTCS_NHOM1
-Xây dựng mã độc Remote Access Trojan và server quản lý tập trung máy tính nạn nhân
+
 Nội Dung:
-- Tìm hiểu vai trò của Packer
-- Tìm hiểu cấu trúc file thực thi trên hệ điều hành Windows
-- Các kĩ thuật chống dịch ngược
-- Các kĩ thuật nén/giải nén file thực thi trên bộ nhớ
-- Cách thực thi chương trình được nén trong Packer
+- Tìm hiểu và xây dựng chương trình mã độc RAT, bằng ngôn ngữ C++ nhằm mục đích học tập & nghiên cứu
+- Tìm hiểu và ứng dụng khai thác một lỗ hổng bảo mật trên Windows để triển khai mã độc.
+- Tìm hiểu cách một chương trình mã độc được phát tán qua Email.
+- 
 Thực nghiệm:
 - Xây dựng mã độc Remote Access Trojan và server quản lý tập trung máy tính nạn nhân
 
