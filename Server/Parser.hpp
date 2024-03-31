@@ -24,6 +24,7 @@ public:
     //Các biến để theo dõi hoạt động bàn phím, click chuột, di chuyển chuột và tạm dừng
     bool _keyboardTrack;
     bool _mouseClickTrack;
+    bool _mouseMoveTrack;
     bool _pause;
 
 private:
