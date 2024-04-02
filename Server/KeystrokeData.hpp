@@ -15,7 +15,7 @@ public:
 protected:
     int _timestamp;
     int _key;
-    int _procName[256];
+    char _procName[256];
 
 public:
     virtual void dump() const;
