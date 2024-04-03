@@ -66,8 +66,7 @@ public:
     static void sendData(Client &c);
     void getMessageQ();
     void getMessage();
-    void getMessage(Spider::RequestCode code,
-                    const std::shared_ptr<IInput> &info);
+    void getMessage(Spider::RequestCode code, const std::shared_ptr<IInput> &info);
 
     /* WRITE/READ IN LOG FILE */
     void changeLog();

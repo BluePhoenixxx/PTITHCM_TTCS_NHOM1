@@ -6,7 +6,8 @@
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 #include <boost/bind/bind.hpp>
-class BoostNetwork
+#include "INetwork.h"
+class BoostNetwork : public INetwork
 {
 public:
     // Constructor with default host and port
@@ -42,7 +43,7 @@ public:
 private:
     std::string _port;
     std::string _host;
-    boost::asio::io_service &_io_service;
+    boost::asio::io_service _io_service;
     std::unique_ptr<boost::asio::ssl::stream<boost::asio::ip::tcp::socket>> _client;
     bool _isConnected;
 };

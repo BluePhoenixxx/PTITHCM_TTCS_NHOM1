@@ -3,12 +3,12 @@
 #ifndef MOUSEHOOKER_HPP_
 #define MOUSEHOOKER_HPP_
 
-#include "ADataHoorker.hpp"
+#include "ADataHooker.hpp"
 
 class MouseHooker : public ADataHooker
 {
 public:
-	MouseHooker() = default;
+	MouseHooker();
 	~MouseHooker() = default;
 
 	void startHook();
