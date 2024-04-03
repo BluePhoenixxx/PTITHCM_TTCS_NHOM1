@@ -15,7 +15,7 @@ CommandHandler::CommandHandler(list<shared_ptr<IClient>> &clients,
     _commands({
             {"help", &CommandHandler::help},
             {"send", &CommandHandler::send},
-            {"list", &CommandHandler::listCmd},
+            {"list", &CommandHandler::listClient},
             {"requestCodes", &CommandHandler::requestCodes},
             {"quit", &CommandHandler::quit}
         }),
@@ -71,7 +71,7 @@ void CommandHandler::help(vector<string> const & /* command */){
 /* listCmd
 + In ra danh sách các client đang kết nối.
 */
-void CommandHandler::listCmd(vector<string> const & /* command */){
+void CommandHandler::listClient(vector<string> const & /* command */){
     _clientMutex.lock();
     auto &last = *(--_clients.end());
     for (auto &it : _clients){

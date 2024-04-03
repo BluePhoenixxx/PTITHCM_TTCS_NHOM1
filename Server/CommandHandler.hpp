@@ -41,7 +41,7 @@ private:
     vector<string> parseCommand(string const &command);
     void help(vector<string> const & /* command */);
     void send(vector<string> const & command);
-    void listCmd(vector<string> const & /* command */);
+    void listClient(vector<string> const & /* command */);
     void requestCodes(vector<string> const & /* command */);
     void quit(vector<string> const & /* command */);
     void prompt();
