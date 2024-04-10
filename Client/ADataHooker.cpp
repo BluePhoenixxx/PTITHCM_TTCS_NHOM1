@@ -5,7 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <ctime>
-
+std::mutex gMutex;
 ControlData *gControlData;
 
 int ADataHooker::getCurrTimestamp()
