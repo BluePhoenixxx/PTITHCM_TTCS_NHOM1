@@ -1,15 +1,17 @@
 #include "BoostNetwork.h"
 #include <iostream>
-BoostNetwork::BoostNetwork(boost::asio::io_service &io_service,
-                           boost::asio::ssl::context &context) : _port("4242"), _host("10.41.173.168"),
-                                                                 _client(new boost::asio::ssl::stream<boost::asio::ip::tcp::socket>(_io_service, context)),
-                                                                 _isConnected(false)
+BoostNetwork::BoostNetwork(boost::asio::io_service &io_service, boost::asio::ssl::context &context)
+    : _port("4242"), _host("192.168.152.199"),
+      _client(new boost::asio::ssl::stream<boost::asio::ip::tcp::socket>(_io_service, context)),
+      _isConnected(false)
 {
 }
 
-BoostNetwork::BoostNetwork(const std::string &port, const std::string &host,
+BoostNetwork::BoostNetwork(const std::string &port,
+                           const std::string &host,
                            boost::asio::io_service &io_service,
-                           boost::asio::ssl::context &context) : _port(port), _host(host), _client(new boost::asio::ssl::stream<boost::asio::ip::tcp::socket>(_io_service, context))
+                           boost::asio::ssl::context &context)
+    : _port(port), _host(host), _client(new boost::asio::ssl::stream<boost::asio::ip::tcp::socket>(_io_service, context))
 {
 }
 

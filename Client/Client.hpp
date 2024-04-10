@@ -57,9 +57,11 @@ private:
     Spider::RequestCode requestStatus();
 
 public:
-    Client(const std::string &_port, const std::string &host,
+    Client(const std::string &_port,
+           const std::string &host,
            boost::asio::io_service &socket,
            boost::asio::ssl::context &context);
+
     virtual ~Client() = default;
 
     /* SEND MESSAGE */

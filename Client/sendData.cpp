@@ -2,7 +2,8 @@
 #include <vector>
 #include "stdafx.h"
 #include "BoostNetwork.h"
-
+#include "Client.hpp"
+#include <iostream>
 void Client::sendData(Client &c)
 {
     try

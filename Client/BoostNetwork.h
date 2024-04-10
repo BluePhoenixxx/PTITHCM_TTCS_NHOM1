@@ -15,7 +15,7 @@ public:
 
     // Constructor with specified host and port
     BoostNetwork(const std::string &port, const std::string &host, boost::asio::io_service &io_service, boost::asio::ssl::context &context);
-
+    ~BoostNetwork() = default;
     // Send data
     int send(const std::vector<char> &msg);
 
