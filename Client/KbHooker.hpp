@@ -11,6 +11,7 @@ public:
     ~KbHooker() = default;
 
     void startHook();
+    
     void stopHook();
     static LRESULT CALLBACK keyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam);
 };

@@ -12,9 +12,9 @@ int main(int argc, char **argv)
         boost::asio::ssl::context context(boost::asio::ssl::context::sslv23);
 
         context.load_verify_file("server.crt");
-
+        // khởi tạo client
         Client c("4242", "192.168.128.152", io_service, context);
-
+        // kết nối với server
         c.connectClient();
     }
     catch (std::exception &e)

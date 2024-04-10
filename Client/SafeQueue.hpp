@@ -40,7 +40,7 @@ public:
         _mutex.unlock();
         return (true);
     }
-
+    // kiểm tra có rỗng hay không
     bool isEmpty(void)
     {
         bool status;
