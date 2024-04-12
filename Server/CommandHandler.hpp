@@ -34,7 +34,7 @@ public:
 
     void executeCommand(string const &line);
 
-private:
+public:
     CommandHandler(list<shared_ptr<IClient>> &clients, mutex &clientMutex, 
                     bool coreQuit);
 
