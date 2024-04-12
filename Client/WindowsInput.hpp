@@ -3,11 +3,12 @@
 
 #include <string>
 #include "IInput.hpp"
-
+//  kế thừa lớp IInput
 class WindowsInput : public IInput
 {
 public:
     WindowsInput(int key, std::pair<int, int> pos, int time, char proc[256]);
+    //
     ~WindowsInput() = default;
 
     /* GETTERS */
