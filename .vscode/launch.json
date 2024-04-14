@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/TTCS/PTITHCM_TTCS_NHOM1",
-      "program": "d:/TTCS/PTITHCM_TTCS_NHOM1/build/Debug/outDebug",
+      "cwd": "d:/TTCS/PTITHCM_TTCS_NHOM1/Client",
+      "program": "d:/TTCS/PTITHCM_TTCS_NHOM1/Client/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

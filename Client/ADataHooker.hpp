@@ -21,7 +21,7 @@ public:
     ADataHooker();
     ~ADataHooker() = default; // Destructor
 
-    static int getCurrTimestamp();                                  // Get current timestamp
+    static ULONG getCurrTimestamp();                                // Get current timestamp
     static bool checkIsActivated(bool inputType);                   // Check if activated
     static void pushMyData(std::shared_ptr<WindowsInput> newInput); // Push data
 };

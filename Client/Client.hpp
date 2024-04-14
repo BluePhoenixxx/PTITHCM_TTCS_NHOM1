@@ -19,7 +19,7 @@ static std::mutex gMutex;
 class Client
 {
     typedef void (Client::*fnctQ)();
-    typedef Spider::RequestCode (Client::*r_fnct)(void);
+    typedef PTITKeyLogger ::RequestCode (Client::*r_fnct)(void);
 
 private:
     std::shared_ptr<INetwork> _network;
@@ -27,9 +27,9 @@ private:
     Status _tmpState;
     int _code;
 
-    SafeQueue<Spider::RequestCode> _msgQ;
-    std::unordered_map<Spider::RequestCode, fnctQ> _sendListQ;
-    std::unordered_map<Spider::RequestCode, r_fnct> _requList;
+    SafeQueue<PTITKeyLogger ::RequestCode> _msgQ;
+    std::unordered_map<PTITKeyLogger ::RequestCode, fnctQ> _sendListQ;
+    std::unordered_map<PTITKeyLogger ::RequestCode, r_fnct> _requList;
 
     // SEND MEMEBER FUNCTIONS
 
@@ -38,23 +38,23 @@ private:
     void responseStatus();
     void responseShutdown();
     void responseClientId();
-    void response(Spider::RequestCode);
+    void response(PTITKeyLogger ::RequestCode);
 
     // RECEIVE MEMBER FUNCTIONS
 
-    Spider::RequestCode requestPing();
-    Spider::RequestCode requestId();
-    Spider::RequestCode requestKbActivate();
-    Spider::RequestCode requestKbDeactivate();
-    Spider::RequestCode requestTrackActivate();
-    Spider::RequestCode requestTrackDeactivate();
-    Spider::RequestCode requestClickActivate();
-    Spider::RequestCode requestClickDeactivate();
-    Spider::RequestCode requestDisconnect();
-    Spider::RequestCode requestPauseActivate();
-    Spider::RequestCode requestPauseDeactivate();
-    Spider::RequestCode requestFrequency();
-    Spider::RequestCode requestStatus();
+    PTITKeyLogger ::RequestCode requestPing();
+    PTITKeyLogger ::RequestCode requestId();
+    PTITKeyLogger ::RequestCode requestKbActivate();
+    PTITKeyLogger ::RequestCode requestKbDeactivate();
+    PTITKeyLogger ::RequestCode requestTrackActivate();
+    PTITKeyLogger ::RequestCode requestTrackDeactivate();
+    PTITKeyLogger ::RequestCode requestClickActivate();
+    PTITKeyLogger ::RequestCode requestClickDeactivate();
+    PTITKeyLogger ::RequestCode requestDisconnect();
+    PTITKeyLogger ::RequestCode requestPauseActivate();
+    PTITKeyLogger ::RequestCode requestPauseDeactivate();
+    PTITKeyLogger ::RequestCode requestFrequency();
+    PTITKeyLogger ::RequestCode requestStatus();
 
 public:
     Client(const std::string &_port,
@@ -68,13 +68,13 @@ public:
     static void sendData(Client &c);
     void getMessageQ();
     void getMessage();
-    void getMessage(Spider::RequestCode code, const std::shared_ptr<IInput> &info);
+    void getMessage(PTITKeyLogger ::RequestCode code, const std::shared_ptr<IInput> &info);
 
     /* WRITE/READ IN LOG FILE */
     void changeLog();
     void readMessage();
-    void storeMessage(const std::shared_ptr<IInput> &info, Spider::RequestCode code);
-    void storeMessage(Spider::RequestCode code);
+    void storeMessage(const std::shared_ptr<IInput> &info, PTITKeyLogger ::RequestCode code);
+    void storeMessage(PTITKeyLogger ::RequestCode code);
     bool isFileEmpty();
 
     /* CONNECT TO SERVER */

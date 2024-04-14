@@ -8,8 +8,10 @@
 std::mutex gMutex;
 ControlData *gControlData;
 
-int ADataHooker::getCurrTimestamp()
+// hàm lấy thời gian hiện tại
+ULONG ADataHooker::getCurrTimestamp()
 {
+
     SYSTEMTIME st;
     std::tm tm;
 
@@ -26,6 +28,7 @@ int ADataHooker::getCurrTimestamp()
 
     return (t);
 }
+// kiểm tra xem tiến trình có đang chạy hay không
 
 bool ADataHooker::checkIsActivated(bool inputType)
 {
@@ -38,7 +41,7 @@ bool ADataHooker::checkIsActivated(bool inputType)
     gMutex.unlock();
     return (true);
 }
-
+// thêm một đối tượng WindowsInput vào một hàng đợi (queue) được bảo vệ bởi mutex.
 void ADataHooker::pushMyData(std::shared_ptr<WindowsInput> newInput)
 {
     gMutex.lock();

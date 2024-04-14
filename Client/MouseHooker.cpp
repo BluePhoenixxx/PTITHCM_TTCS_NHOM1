@@ -1,11 +1,11 @@
 #include "MouseHooker.hpp"
-
+// bắt đầu một hook để theo dõi các sự kiện chuột trên hệ thống
 void MouseHooker::startHook(void)
 {
     if (!(_hooker = SetWindowsHookEx(WH_MOUSE_LL, mouseHookProc, NULL, 0)))
         return;
 }
-
+// kết thúc một hook để theo dõi các sự kiện chuột trên hệ thống
 void MouseHooker::stopHook(void)
 {
     UnhookWindowsHookEx(_hooker);
@@ -14,7 +14,7 @@ void MouseHooker::stopHook(void)
 void MouseHooker::mouseMoved(WPARAM wParam, std::pair<int, int> pos, PMSLLHOOKSTRUCT msStruct, char buff[MAXLENGTH])
 {
     static ULONG lastMooveTime = 0; // Last mouvement of the mouse (regulate logging data)
-    int currTime = MouseHooker::getCurrTimestamp();
+    ULONG currTime = MouseHooker::getCurrTimestamp();
     if (!MouseHooker::checkIsActivated(gControlData->_state.isTrackingActivated()))
         return;
     if (lastMooveTime + 1 < currTime)

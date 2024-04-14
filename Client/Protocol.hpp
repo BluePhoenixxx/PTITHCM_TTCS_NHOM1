@@ -1,7 +1,8 @@
 #ifndef PROTOCOL_HPP_
 #define PROTOCOL_HPP_
 
-namespace Spider
+namespace PTITKeyLogger
+
 {
     // tạo enum RequestCode để giao diện giữa server và client
     enum RequestCode
@@ -97,6 +98,7 @@ namespace Spider
         bool mouse_move_tracking;
         bool paused;
     };
-} // namespace Spider
+} // namespace PTITKeyLogger
+
 
 #endif /* !PROTOCOL_HPP_ */

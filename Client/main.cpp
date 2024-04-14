@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
         context.load_verify_file("server.crt");
         // khởi tạo client
-        Client c("4242", "192.168.128.152", io_service, context);
+        Client c("4242", "192.168.88.22", io_service, context);
         // kết nối với server
         c.connectClient();
     }
