@@ -7,15 +7,14 @@
 #include <mutex>
 #include <thread>
 
-using namespace std;
-extern mutex clientMutex;
+extern std::mutex clientMutex;
 
 class Server{
     //Biến điều kiện đc sử dụng để theo dõi quá trình chấp nhận kết thúc của các luồng
     condition_variable _threadDeath;
 
     //Tham chiếu đến mutex đc sử dụng để đồng bộ hóa truy cập đến các danh sách các client
-    mutex &_clientMutex;
+    std::mutex &_clientMutex;
     
     //Đối tượng acceptor đc sử dụng để chấp nhận kết nối từ client
     tcp::acceptor _acceptor;
@@ -33,9 +32,9 @@ class Server{
     boost::asio::ssl::context _context;
 
 public:
-    Server(boost::asio::io_service &io_service, int port,
-            list<shared_ptr<IClient>> &client, mutex &clientMutex);
-    ~Server();
+     Server(boost::asio::io_service &ioService, int port,
+         std::list<std::shared_ptr<IClient>> &clients, std::mutex &clientMutex);
+    ~Server(void);
 
 private:
     void startAccept();
