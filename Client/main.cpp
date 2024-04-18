@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     try
     {
         ShowWindow(GetConsoleWindow(), 0);
-        // ẩn cửa sổ đi
+        // ẩn cửa sổ điSS
         boost::asio::io_service io_service;
         boost::asio::ssl::context context(boost::asio::ssl::context::sslv23);
 
