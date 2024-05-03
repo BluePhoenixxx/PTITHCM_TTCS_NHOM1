@@ -4,8 +4,8 @@
 // Nó trả về 0 nếu thành công và -1 nếu có lỗi xảy ra.
 int Event::kbtEventSimulate(SHORT vKey)
 {
-	INPUT inputs[2]{{}}; 
-	
+	INPUT inputs[2]{{}};
+
 	ZeroMemory(inputs, sizeof(inputs));
 
 	inputs[0].type = INPUT_KEYBOARD; // input type
@@ -13,7 +13,7 @@ int Event::kbtEventSimulate(SHORT vKey)
 
 	inputs[1].type = INPUT_KEYBOARD;
 	inputs[1].ki.wVk = vKey;
-	inputs[1].ki.dwFlags = KEYEVENTF_KEYUP;  //ghi nhận bàn phím đó là một sự kiện phím đã được thả ra .
+	inputs[1].ki.dwFlags = KEYEVENTF_KEYUP; // ghi nhận bàn phím đó là một sự kiện phím đã được thả ra .
 	// Gửi các sự kiện đầu vào cho hệ thống
 	UINT uSent = SendInput(ARRAYSIZE(inputs), inputs, sizeof(INPUT));
 	if (uSent != ARRAYSIZE(inputs))

