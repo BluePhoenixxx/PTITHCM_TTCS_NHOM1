@@ -56,14 +56,14 @@ cd mingw-w64\n";
 ./configure --prefix=$PREFIX --without-crt;
 DESTDIR=$PREFIX make install;
 ```
-# How to use KeyScan?.
+# How to use KeyLogger?.
 Set the local ip and port number using these commands.
 ```
 lhost ip
 lport port number
 ```
 Then type exploit and the program will generate the .exe file that needs shall be send to the victim.
-# KeyScan Commands
+# KeyLogger Commands
 ```
 SETTING OPTIONS: Set this options before lauching the attack!
 Command                           Discribtion

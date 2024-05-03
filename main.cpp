@@ -23,12 +23,24 @@ int main()
 
 void printDefault()
 {
-	cout << "`_`  `_`_____``_````_``_____` `____```_____` `__  `_``  \n";
-	cout << "|`| /`/| `___|\\ \\  / /|  ___| | `__| |  _  | | |\\ | |   \n";
-	cout << "| |/ / | |___  \\ \\/ / | |___  | |    | |_| | | | \\| |   \n";
-	cout << "|   /  |  ___|  \\  /  |____ | | |    |     | | |\\   |   \n";
-	cout << "| |\\ \\ | |___`   | |   ___| | | |__  |  _  | | | \\  |   \n";
-	cout << "|_| \\_\\|_____|   |_|  |_____| |____| |_| |_| |_|  \\_|   \n";
+
+	cout << "	NNNNNNNN        NNNNNNNNHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     MMMMMMMM               MMMMMMMM       1111111    \n";
+	cout << "	N:::::::N       N::::::NH:::::::H     H:::::::H   OO:::::::::OO   M:::::::M             M:::::::M      1::::::1    \n";
+	cout << "	N::::::::N      N::::::NH:::::::H     H:::::::H OO:::::::::::::OO M::::::::M           M::::::::M     1:::::::1    \n";
+	cout << "	N:::::::::N     N::::::NHH::::::H     H::::::HHO:::::::OOO:::::::OM:::::::::M         M:::::::::M     111:::::1    \n";
+	cout << "	N::::::::::N    N::::::N  H:::::H     H:::::H  O::::::O   O::::::OM::::::::::M       M::::::::::M        1::::1    \n";
+	cout << "	N:::::::::::N   N::::::N  H:::::H     H:::::H  O:::::O     O:::::OM:::::::::::M     M:::::::::::M        1::::1    \n";
+	cout << "	N:::::::N::::N  N::::::N  H::::::HHHHH::::::H  O:::::O     O:::::OM:::::::M::::M   M::::M:::::::M        1::::1    \n";
+	cout << "	N::::::N N::::N N::::::N  H:::::::::::::::::H  O:::::O     O:::::OM::::::M M::::M M::::M M::::::M        1::::l    \n";
+	cout << "	N::::::N  N::::N:::::::N  H:::::::::::::::::H  O:::::O     O:::::OM::::::M  M::::M::::M  M::::::M        1::::l    \n";
+	cout << "	N::::::N   N:::::::::::N  H::::::HHHHH::::::H  O:::::O     O:::::OM::::::M   M:::::::M   M::::::M        1::::l    \n";
+	cout << "	N::::::N    N::::::::::N  H:::::H     H:::::H  O:::::O     O:::::OM::::::M    M:::::M    M::::::M        1::::l    \n";
+	cout << "	N::::::N     N:::::::::N  H:::::H     H:::::H  O::::::O   O::::::OM::::::M     MMMMM     M::::::M        1::::l    \n";
+	cout << "	N::::::N      N::::::::NHH::::::H     H::::::HHO:::::::OOO:::::::OM::::::M               M::::::M     111::::::111 \n";
+	cout << "	N::::::N       N:::::::NH:::::::H     H:::::::H OO:::::::::::::OO M::::::M               M::::::M     1::::::::::1 \n";
+	cout << "	N::::::N        N::::::NH:::::::H     H:::::::H   OO:::::::::OO   M::::::M               M::::::M     1::::::::::1 \n";
+	cout << "	NNNNNNNN         NNNNNNNHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     MMMMMMMM               MMMMMMMM     111111111111 \n";
+
 	cout << "           Created by: PTITHCM21\n";
 	cout << "           Github: https://github.com/BluePhoenixxx/PTITHCM_TTCS_NHOM1.git\n";
 	cout << "           Version: 0.0.1\n\n\n";
