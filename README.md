@@ -25,7 +25,7 @@ Nhóm 1 - Thành viên:
 # Platforms
 * Linux ✅️
 * Windows ✅️
-* Termux (Android) ✅️
+
 
 # Requirements
 * GCC and MingWG on Linux and Termux
